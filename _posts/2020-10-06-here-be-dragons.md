@@ -7,7 +7,8 @@ comments: true
 ---
 
 As you grow a codebase, eventually (or perhaps quite quickly) certain parts become 'scary'.
-"Here Be Dragons" is an actual quote from a codebase I've worked on.
+"Here Be Dragons" is an actual quote from a codebase I've worked on. Let's talk about how to
+manage this kind of code.
 
 ## Why does stuff get scary?
 

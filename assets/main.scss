@@ -1,0 +1,56 @@
+---
+---
+
+@import "minima";
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #383838;
+}
+
+// hide the heading on the front page (defaults to the word posts)
+.post-list-heading {
+    display: none
+}
+
+// hide the subscribe to rss feed
+.rss-subscribe { display: none; }
+
+// make code snippets on a nicer background
+.highlighter-rouge .highlight {
+    background: #f7f8f9;
+}
+
+pre, code {
+    background-color: #f7f8f9;
+}
+
+// make the header bar white text on black
+.site-header {
+    background-color: #424242;
+}
+
+.site-title, .site-title:visited, .site-nav .page-link {
+    color: #fdfdfd;
+}
+
+a {
+    color: #424242
+}
+
+a:visited {
+    color: #222222
+}
+
+
+// make headings more bold
+h1, h2, h3 {
+    font-weight: 600
+}
+
+// change footer shape
+.footer-col-2 {
+    width: -webkit-calc(60% - (30px / 2));
+    width: calc(60% - (30px / 2));
+}

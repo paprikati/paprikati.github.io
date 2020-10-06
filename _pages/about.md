@@ -1,11 +1,10 @@
 ---
+permalink: /about
 layout: page
 title: About me
 ---
 
 <img src="/assets/img/headshot.jpg" width="100px" height="100px">{: .mx-auto.d-block :}
-
-
 
 I'm Lisa, a software engineer at GoCardless.
 
