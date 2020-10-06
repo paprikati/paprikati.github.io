@@ -1,0 +1,16 @@
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+.navbar-brand, .nav-link {
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700 !important;
+}
+
+.box-note {
+    font-size: 14px;
+}
+
+.post-meta {
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;  
+}

@@ -1,2 +1,0 @@
-# paprikati.github.io
-Blog
