@@ -63,7 +63,8 @@ really well it might have just bubbled to the top of your tech investment to-do 
 
 The rest of this post is a step-by-step guide of how to 'deal' with scary code - which is all based on the premise that you are
 trying to refactor a system without significantly changing it's behaviour. Not everything will be relevant for everyone, but I hope
-there'll be some useful advice all the same.
+there'll be some useful advice all the same. I've used this a few times recently on features as different as API permissions and
+an ElasticSearch integration, with great success.
 
 ### 👉 Step 1: Identify The Scary Stuff
 
