@@ -35,3 +35,8 @@ exclude:
 
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
+
+# Used by jekyll-seo-tags
+twitter:
+  username: paprikati_eng

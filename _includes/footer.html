@@ -20,4 +20,9 @@
       </div>
     </div>
   </div>
+  {% if page.title %}
+    {% seo %}
+  {% else %}
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | relative_url }}">
+  {% endif %}
 </footer>
