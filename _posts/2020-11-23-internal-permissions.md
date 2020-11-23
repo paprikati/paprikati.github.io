@@ -116,8 +116,11 @@ staff. Some of these features are exposed in the dashboard, and to a new joiner 
 can do 'because they're a GC user' and what an external user would see. This makes onboarding really tough as our
 support teams have to learn all the different rules about what features are available to external and internal users.
 We now use this endpoint to conditionally render a bright pink box around any content which is only visible 'because 
-you are a staff user', which has really helped our internal users. My favourite part about this is that the code to
-achieve it in the UI is really simple:
+you are a staff user', which has really helped our internal users.
+
+<img src="/assets/img/pink-buttons.png" width="300px" >
+
+My favourite part about this is that the code to achieve it in the UI is really simple:
 
 ```jsx
 const UnlessUserIsRestricted = ({
