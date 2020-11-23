@@ -3,6 +3,7 @@ layout: post
 title: Here Be Dragons
 subtitle: Dealing with code you don't understand
 tags: [tech-debt, scale]
+image: /assets/img/here_be_dragons.png
 comments: true
 ---
 

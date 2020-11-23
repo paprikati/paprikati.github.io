@@ -3,6 +3,7 @@ layout: post
 title: Who can do what?
 subtitle: Managing permission rules
 tags: [tech-debt, scale]
+image: /assets/img/pink-buttons.png
 comments: true
 ---
 
