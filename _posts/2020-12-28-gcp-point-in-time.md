@@ -51,8 +51,9 @@ mysql > SHOW BINARY LOGS
 ```
 
 Then, haphazardly check the first events for each file until you find the file that has your desired timestamp inside. In our case we only had to check a couple of files so this was fine - if you have large volumes you may want to do some piping to make this more automated.
+We need the `read-from-remote-server` flag because we are running this utility in our application code. If you are on the server pod itself, you won't need this.
 ```
-mysqlbinlog -R --stop-position=2 binlog.000015 
+mysqlbinlog --read-from-remote-server --stop-position=2 binlog.000015 
 ```
 
 ### 3. find the correct binlog location
@@ -60,7 +61,7 @@ mysqlbinlog -R --stop-position=2 binlog.000015
 Now that we know which file we're in, we just need to get the `location` or `position` of the line we want to restore up to. We can do that by defining a time range and asking for all binlog entries from our file in that time range:
 
 ```
-mysqlbinlog -R --start-datetime="2020-12-01 13:00:00" --stop-datetime="2020-12-01 13:00:05" binlog.000015
+mysqlbinlog --read-from-remote-server --start-datetime="2020-12-01 13:00:00" --stop-datetime="2020-12-01 13:00:05" binlog.000015
 
 =>
 
@@ -74,6 +75,6 @@ What you want is the `end_log_pos` - that is the 'location' of this particular b
 
 Follow the instructions in the [Google docs](https://cloud.google.com/sql/docs/mysql/backup-recovery/pitr#perform-pitr) to specify your binlog file and location to trigger a point-in-time recovery. Then go for a coffee (ours took about 4 hours) and you should have a database as it was at your original timestamp! Congrats 🎉
 
-# Post script
+## Post script
 
-Note that, as you can see in Google's own docs on [how to do this](https://cloud.google.com/sql/docs/mysql/backup-recovery/pitr#coordinates), you can see binary log events from a normal mysql client by running `SHOW BINLOG EVENTS`. However, this gets you lots of useful information *except* mind-bogglingly the timestamp, which means if you know what timestamp you are looking for, it is spectacularly unhelpful. This may be useful if you know exactly what query you want to restore until, but if like us you just have a timestamp it's not very useful.
+Note that, as you can see in Google's own docs on [how to do this](https://cloud.google.com/sql/docs/mysql/backup-recovery/pitr#coordinates), you can see binary log events from a normal mysql client by running `SHOW BINLOG EVENTS`. This gets you lots of useful information *except* (mind-bogglingly) the timestamp, which means if you only have a timestamp it is spectacularly unhelpful. This may be useful if you know exactly what query you want to restore until.
