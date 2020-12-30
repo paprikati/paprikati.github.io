@@ -4,7 +4,7 @@ layout: page
 title: About me
 ---
 
-<img src="/assets/img/headshot.jpg" width="100px" height="100px">
+<img src="/assets/img/headshot-square.jpg" width="350px" style="float:left; margin-right:30px;">
 
 I'm Lisa, a software engineer at GoCardless.
 
