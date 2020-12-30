@@ -12,7 +12,7 @@ This is a technical write up of the next few hours of learning how to actually d
 
 # How did we get here?
 
-At GoCardless, we have an ancillary service that runs on a CloudSQL powered MySQL instance. Something had *gone wrong* and we needed to recover some deleted data, ideally 'just before' it was deleted. GCP provides two backup types: a scheduled one and a 'point in time' one. We tried restoring from one of the scheduled daily backups as a starting point, but that failed instantly. Instead, we started looking at 'point in time recovery'. To do this, we needed to provide a location in the binary log file.
+At GoCardless, we have a service that runs on a CloudSQL powered MySQL instance. Something had *gone wrong* and we needed to recover some deleted data, ideally 'just before' it was deleted. GCP provides two backup types: a scheduled one and a 'point in time' one. We tried restoring from one of the scheduled daily backups as a starting point, but that failed instantly. Instead, we started looking at 'point in time recovery'. To do this, we needed to provide a location in the binary log file.
 
 # A binary log file, you say?
 
@@ -51,22 +51,40 @@ mysql > SHOW BINARY LOGS
 ```
 
 Then, haphazardly check the first events for each file until you find the file that has your desired timestamp inside. In our case we only had to check a couple of files so this was fine - if you have large volumes you may want to do some piping to make this more automated.
+```
+mysqlbinlog \
+  -h "$DB_DEFAULT_HOST"  \
+  -u "$DB_DEFAULT_USER" \
+  --read-from-remote-server \
+  --stop-position=500 \
+  binlog.000015 \
+  | grep "end_log_pos" -m 1
+
+=> #201230 12:23:59 server id 12345  end_log_pos 123 CRC32 0xf16c2470 	Start: binlog v 4, server v 5.7.23-log created 201230 12:23:59 at startup
+```
+You can see the timestamp at the start of this line - this indicates when this binlog file starts.
 We need the `read-from-remote-server` flag because we are running this utility in our application code. If you are on the server pod itself, you won't need this.
-```
-mysqlbinlog --read-from-remote-server --stop-position=2 binlog.000015 
-```
+You need to specify a host and user (and possibly also a password) - use the docs to guide you.
+The `--stop-position` is just so we don't read the entire file. 500 is an arbitrary length which we found worked to make sure you get the first proper event.
+The `grep` just filters out lots of the noise in the log file - you might want to look without it to see what the whole file looks like.
 
 ### 3. find the correct binlog location
 
 Now that we know which file we're in, we just need to get the `location` or `position` of the line we want to restore up to. We can do that by defining a time range and asking for all binlog entries from our file in that time range:
 
 ```
-mysqlbinlog --read-from-remote-server --start-datetime="2020-12-01 13:00:00" --stop-datetime="2020-12-01 13:00:05" binlog.000015
+mysqlbinlog \
+  -h "$DB_DEFAULT_HOST" \
+  -u "$DB_DEFAULT_USER" \
+  --read-from-remote-server \
+  --start-datetime="2020-12-30 12:24:02" \
+  --stop-datetime="2020-12-30 12:24:05" \
+  binlog.000015 \
+  | grep "end_log_pos"
 
 =>
 
-201201 13:00:04 server id 134323482 end_log_pos 22743947 CRC32 0xae4682ba 	Xid = 2880417814,
-
+#201230 12:23:59 server id 12345  end_log_pos 123 CRC32 0xf16c2470 	Start: binlog v 4, server v 5.7.23-log created 201230 12:23:59 at startup
 ```
 
 What you want is the `end_log_pos` - that is the 'location' of this particular binary log entry.
@@ -77,4 +95,4 @@ Follow the instructions in the [Google docs](https://cloud.google.com/sql/docs/m
 
 ## Post script
 
-Note that, as you can see in Google's own docs on [how to do this](https://cloud.google.com/sql/docs/mysql/backup-recovery/pitr#coordinates), you can see binary log events from a normal mysql client by running `SHOW BINLOG EVENTS`. This gets you lots of useful information *except* (mind-bogglingly) the timestamp, which means if you only have a timestamp it is spectacularly unhelpful. This may be useful if you know exactly what query you want to restore until.
+Note that, as you can see in Google's own docs on [how to do this](https://cloud.google.com/sql/docs/mysql/backup-recovery/pitr#coordinates), you can see binary log events from a normal mysql client by running `SHOW BINLOG EVENTS`. This gets you lots of useful information, but does not (bizzarely) include the timestamp making it totally useless for our use case. The queries that it stores are also hard to search through quickly unless you have the xid of the transaction you are looking for.
