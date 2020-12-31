@@ -39,7 +39,18 @@ pre, code {
 }
 
 a {
-    color: #424242
+    color: #424242;
+}
+
+.page-content {
+    a {
+        text-decoration: underline;
+    }
+    
+    a:hover {
+        font-weight: 500;
+    }
+    
 }
 
 a:visited {
