@@ -11,7 +11,7 @@ As you grow a codebase, eventually (or perhaps quite quickly) certain parts beco
 This blog post talks about why that happens, and some steps you can take to reduce the 
 fear factor.
  
-<img src="/assets/img/here_be_dragons.png" width="600px" >
+<img src="/assets/img/here_be_dragons.png" width="350px" >
 
 
 ## Why does stuff get scary?
