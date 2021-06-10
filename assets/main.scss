@@ -7,6 +7,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
+$accent: $accent;
+
 body {
     font-family: 'Montserrat', sans-serif;
     color: #383838;
@@ -31,15 +33,27 @@ pre, code {
 
 // make the header bar white text on black
 .site-header {
-    background-color: #424242;
+    background-color: $accent;
+    border-top-color: $accent
 }
 
 .site-title, .site-title:visited, .site-nav .page-link {
     color: #fdfdfd;
 }
 
+.site-nav {
+    background-color: $accent;
+    border: none;
+}
+
+.menu-icon {
+    svg {
+        fill: #fdfdfd !important
+    }
+}
+
 a {
-    color: #424242
+    color: #222222
 }
 
 a:visited {
