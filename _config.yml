@@ -40,3 +40,6 @@ plugins:
 # Used by jekyll-seo-tags
 twitter:
   username: paprikati_eng
+
+# Google Analytics
+google_analytics: G-1EJ0MQ73YT-X
