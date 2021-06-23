@@ -25,22 +25,23 @@ layout: default
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
       {%- for post in posts -%}
       <li>
-        <div class="post-meta" style="text-align: right">{{ post.date | date: date_format }}</div>
-        <div style="display: flex">
-            <div class="post-img" width="150px">
-                <img src="{{ post.image}}" width="150px">
+          <a href="{{ post.url | relative_url }}">
+                <div style="display: flex">
+            <div class="post-img" width="80px">
+                <img src="{{ post.image}}" width="80px">
             </div>
             <div style="flex: 1">
-                <h3>
-                    <a class="post-link" href="{{ post.url | relative_url }}">
+                <h3 class="title">
                       {{ post.title | escape }}
-                    </a>
                   </h3>
+                  <p class="subtitle">{{post.subtitle}}</p>
                   {%- if site.show_excerpts -%}
                     {{ post.excerpt }}
                   {%- endif -%}
             </div>
+            <div class="post-meta" style="text-align: right; margin-left: 15px">{{ post.date | date: date_format }}</div>
         </div>
+    </a>
       </li>
       {%- endfor -%}
     </ul>

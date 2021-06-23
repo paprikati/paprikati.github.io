@@ -1,6 +1,7 @@
 ---
 layout: post
-title: "Put Your Hand Up: Keeping a small-company mindset as you grow"
+title: "Put Your Hand Up"
+subtitle: Keeping a small-company mindset as you grow
 tags: [learning, culture]
 image: /assets/img/hand_up.jpg
 comments: true
