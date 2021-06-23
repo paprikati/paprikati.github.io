@@ -71,3 +71,9 @@ h1, h2, h3 {
     width: -webkit-calc(60% - (30px / 2));
     width: calc(60% - (30px / 2));
 }
+
+.post-content {
+    a {
+        text-decoration: underline;
+    }
+}
