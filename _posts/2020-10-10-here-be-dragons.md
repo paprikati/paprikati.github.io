@@ -10,9 +10,10 @@ comments: true
 As you grow a codebase, eventually (or perhaps quite quickly) certain parts become 'scary'.
 This blog post talks about why that happens, and some steps you can take to reduce the 
 fear factor.
- 
-<img src="/assets/img/here_be_dragons.png" width="350px" >
 
+
+
+<img src="/assets/img/here_be_dragons.png" width="350px" >
 
 ## Why does stuff get scary?
 
