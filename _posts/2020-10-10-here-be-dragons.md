@@ -15,9 +15,9 @@ fear factor.
 
 <img src="/assets/img/here_be_dragons.png" width="350px" >
 
-## Why does stuff get scary?
+# Why does stuff get scary?
 
-### If I break it, it's really bad
+## 💔 If I break it, it's really bad
 
 All code may be equal, but some is more equal than others.
 The bit of code that means we take the wrong amount of money from a customer is more scary than the bit of code
@@ -25,7 +25,7 @@ which localises the API error messages.
 This isn't really fixable - there'll always be important code - but means you'll have to think more carefully
 about testing and release strategies in these areas.
 
-### I don't know what it's actually doing
+## 🤷 I don't know what it's actually doing
 
 Some code is hard to read. Maybe it:
 
@@ -40,14 +40,14 @@ Some code is hard to read. Maybe it:
 However it came to be, it's now a struggle to understand what the code is doing. That makes trying to change stuff
 really scary (and high risk).
 
-### I don't know why it's doing something
+## 🤔 I don't know why it's doing something
 
 Sometimes you encounter code where you don't know *why* it's there. You can see *what* it is achieving (that's more the readability point
 above) but there's nothing in the comments / commit history / tests / institutional memory which tells you *why*.
 This is why good commit messages are so important to maintaining a code base long term.
 Without understanding why, it's hard to know which logic you need to keep versus which is no longer required or perhaps actively unhelpful.
 
-## How did we get here?
+# How did we get here?
 
 Every engineer would like to think that *their* code will never become scary. The evidence suggests otherwise. We often make trade-offs
 where we prioritise speed of delivery or speed of processing over readability. Engineering teams often have significant churn, so the 
@@ -55,7 +55,7 @@ likelihood of whoever wrote the code still being around is not that high. Partic
 is written very quickly, usually with more fous on the here and now than the poor engineer reading it 5 years down the line. This process
 is also called 'code rot', which in my experience is an inevitable part of software.
 
-## So, What Next?
+# So, What Next?
 
 There is always the 'Do Nothing' approach. And it may be the right call: if it ain't broke, don't fix it.
 However, at some point this will no longer be the correct option. Leaving scary code unchecked causes all
@@ -69,7 +69,7 @@ trying to refactor a system without significantly changing it's behaviour. Not e
 there'll be some useful advice all the same. I've used this a few times recently on features as different as API permissions and
 an ElasticSearch integration, with great success.
 
-### 👉 Step 1: Identify The Scary Stuff
+## 👉 Step 1: Identify The Scary Stuff
 
 Having regular discussions about which bits of code are most 'scary' should be a normal part of managing your code base.
 Most developers make these judgements quite naturally - usually independently from one another - when estimating the
@@ -79,7 +79,7 @@ complexity of a project or ticket. However, talking about it and aligning can be
 * identifying who has the most context on a given scary thing
 * finding the scary code that is most likely to bite you next (and prioritising fixing it)
 
-### ⚙️ Step 2: Small, Safe, Incremental Refactors
+## ⚙️ Step 2: Small, Safe, Incremental Refactors
 
 This step is primarily targeting the readability problem. You probably also want to add some tests here (if
 the coverage is poor) to help give confidence that you aren't changing any behaviour. They can also act as documentation
@@ -101,7 +101,7 @@ Another focus here should be breaking up the scary code into smaller, more manag
 interfaces between them, that allows you to tackle each section one-by-one. That means you can prioritise certain parts
 (e.g. the place where you need a new feature) without needing to change everything.
 
-### 🔎 Step 3: Investigate 
+## 🔎 Step 3: Investigate 
 
 This is mostly to understand why the code is behaving in a certain way. Your first port of call here should be the code itself
 (and comments), followed by a `git blame` to find any commit messages or PRs that might help you out. You also probably want
@@ -110,7 +110,7 @@ the time. Discoverability of documentation is hard, and most companies aren't ve
 make this easier next time round. This is often the bit which gets harder over time, particularly the 'ask the engineer' part,
 which is one of the reasons that scary code almost always gets scarier.
 
-### 👀 Step 4: Observe & Compare
+## 👀 Step 4: Observe & Compare
 
 Assuming all of that fails, try to isolate bits of code which don't make sense, keeping them as small as possible.
 Then add a flag to disable that logic / use something different. Then write something that runs the code with your
@@ -128,7 +128,7 @@ If your codebase has lots of tests (that are not perfectly organised), I'd also 
 running your whole test suite to see what breaks. That's got me out of jail a couple of times answering the *why is this
 here* question.
 
-### 🛠️ Step 5: Refactor, Rebuild or Walk Away
+## 🛠️ Step 5: Refactor, Rebuild or Walk Away
 
 Once you have a clear understanding of what your code does and why, it's lost most of its scariness. The main thing left
 is probably importance - or **cost of failure**. There's a fork in the road here: do you want to refactor the code (i.e.

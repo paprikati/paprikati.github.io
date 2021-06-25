@@ -19,13 +19,13 @@ can do what. We had three objectives:
 2. **Confidence**: we can be confident in the rules we are applying, and can change those rules.
 3. **Enablement**: build a platform to support future tooling.
 
-## Rules
+# Rules
 
 Any permissions system is built out of rules. A rule is a piece of logic such as 'users with read-write access
 can do [x]' or 'accounts on the basic package cannot do [y]'. In my experience, these rules naturally grow
 more complex over time, and a periodic review can be very useful.
 
-## Permission vs. Restrictions
+# Permission vs. Restrictions
 
 You can frame a 'who can do what' rule in two ways: either via **permissions** (rules that permit access) or
 **restrictions** (rules that prevent access). Each model naturally enables different structures.
@@ -38,7 +38,7 @@ and follow. I'd recommend using a hierarchy if you need - so either having a top
 some of your rules include `INTERSECTIONS` inside, or a top level **restrictions** model where some of your rules
 include `UNION` inside. 
 
-## Scoping the project
+# Scoping the project
 
 As part of scoping, we first had to catalogue all the rules we were applying in our API (which was a non-trivial
 exercise, unfortunately). We chose to pursue a **restrictions** model, largely because that's how the existing
@@ -50,7 +50,7 @@ to encode all our restrictions logic into a token, which 'knows' what it can and
 that wasn't possible for us right now, so all our thinking revolves around the idea that (for now) our rules are
 applied by the endpoints themselves, at the point that the API request is made.
 
-## Rule Catalogue
+# Rule Catalogue
 
 We quickly agreed that we wanted to have a catalogue of rules which could be applied to different endpoints, and
 were well documented. The same code would run on all of our API requests, and apply the rules so we could be 
@@ -60,12 +60,12 @@ the rules were applied using an `INTERSECTION`, we could unit test each rule ind
 a few combinations, as the combination logic was trivial (apply all the rules, if you pass them all then continue).
 Any complicated logic was contained within a particular rule, and then unit tested carefully.
 
-## Which rules does each endpoint apply?
+# Which rules does each endpoint apply?
 
 The next step was to understand how rules from this catalogue were applied to particular endpoints. We came up with
 two contrasting approaches, both of which were in use in the API when we started.
 
-### Option 1: Centrally Defined Restrictions
+## Option 1: Centrally Defined Restrictions
 
 In this design you have a single central location which details which endpoints are included in a particular
 rule, as well as a centrally defined logic for that rule. For example, you might have a single file which has 
@@ -78,7 +78,7 @@ internally too - what extra permissions does a support team member get if I give
 There are options of how you store these restrictions: you could store them in a database rather than in code,
 although we abandoned that idea due to the challenges of maintaining the rules across multiple environments.
 
-### Option 2: Endpoint Owned Restrictions
+## Option 2: Endpoint Owned Restrictions
 
 Instead of centrally defining the restrictions, you can instead define them alongside the endpoint definition.
 Each endpoint then 'owns' its own restrictions, and they can be easily reviewed next to the endpoint's code.
@@ -88,7 +88,7 @@ what restrictions do we apply to someone wanting to create a new customer. It ma
 (as they're in the endpoint definition itself) and makes the 'I forgot to restrict my route' bug less likely as
 they restrictions are clearly part of the code review.
 
-## What we did
+# What we did
 
 We wanted to have our cake and eat it: there were proponents of both options with strong arguments, and for once,
 we found a way.
@@ -98,7 +98,7 @@ definitions and pulls all the applied rules into a single location. One file is 
 answers the 'who can do [x]' question. The second file is `routes_by_restriction` which answers the 'what can
 someone with [x] flag do' question.
 
-## Bonus
+# Bonus
 
 This work enabled us to expose an endpoint that answered the question 'what endpoints can I access?'.
 
@@ -109,7 +109,7 @@ front end which was being used to conditionally render certain buttons, and rely
 single source of truth for who can do what. There are a few other ways of achieving this (we discussed using `OPTIONS`
 calls everywhere instead) but this was a much simpler solution for us to implement.
 
-## Double Bonus
+# Double Bonus
 
 The best bit about the new endpoint was that we could add a feature we'd wanted for ages: 'what endpoints could
 I use if I wasn't a GoCardless staff user'. Our API has a number of features that are restricted to just GoCardless
@@ -151,7 +151,7 @@ return (
 )
 ```
 
-## So How Did We Do?
+# So How Did We Do?
 
 1. **Visibility**: our JSONs provide a single source of truth for 'who can do what'.
 2. **Confidence**: we have 700 lines of tests unit testing each of our rules, and we can easily change which rules are applied to each endpoint.
