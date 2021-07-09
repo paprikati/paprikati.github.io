@@ -2,7 +2,7 @@
 layout: post
 title: Breaking The Monolith I
 subtitle: Where To Start?
-tags: [learning, onboarding]
+tags: [monolith]
 image: /assets/img/btm_icon.png
 comments: true
 ---
@@ -91,5 +91,4 @@ Once we have our blueprint, we can then start to parallelise our efforts by havi
 
 <img src="/assets/img/btm_multiservice.png" width="800px" >
 
-<!-- TODO: link to the next blog post once its live -->
-*Next Up: Transactional Guarantees. Watch this space.*
+*Next Up: [Transactional Guarantees](/2021/07/09/breaking-the-monolith-2.html).*
