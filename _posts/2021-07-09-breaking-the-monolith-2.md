@@ -8,7 +8,9 @@ comments: true
 ---
 Transactional guarantees are one of the hardest challenges when breaking a monolith. They're the key reason I'd recommend staying in a monolith as long as it is practicable.
 
-*Note: This is post 2 of a series; I’d recommend reading at least the introduction of [post 1](/2021/07/01/breaking-the-monolith-1.html) before continuing to explain the scenario.*
+<div class='aside'>
+This is post 2 of a series; I’d recommend reading at least the introduction of <a href="/2021/07/01/breaking-the-monolith-1.html">post 1</a> before continuing to explain the scenario.
+</div>
 
 We’ve decided to extract our webhook sending component into its own service. This component will be responsible for:
 1. Storing the webhook configurations for each customer (i.e. whether they receive webhooks, and to what endpoint)
@@ -81,5 +83,4 @@ It would be possible to make a stateless webhook service but all it could do wou
 
 In the long term, it might make sense to extract either the ‘grouping events into webhooks’ or the ‘actually sending a webhook’ part of our webhook service into something stateless which we could horizontally scale. However, our current focus is on removing pressure from the primary database by breaking up the monolith, so stateless services (which by definition tend not to take pressure off the primary database) aren’t something we’d want to prioritise.
 
-<!-- TODO: link to the next blog post once its live -->
-*Next Up: Inter-Service Communication. Watch this space.*
+*Next Up: [Inter-Service Communication](/2021/07/16/breaking-the-monolith-3.html).*

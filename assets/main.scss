@@ -8,6 +8,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
 $accent: #850101;
+$secondary: #489FB5;
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -101,4 +102,14 @@ h1, h2, h3 {
     .subtitle {
         margin-bottom: 0;
     }
+}
+
+// make an 'aside' block
+.aside {
+    background-color: rgba($secondary, .2);
+    border: $secondary 1px solid;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 12px;
+    font-size: 14px;
 }
