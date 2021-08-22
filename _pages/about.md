@@ -6,7 +6,7 @@ title: About me
 
 <img src="/assets/img/headshot-square.jpg" width="300px" style="float:left; margin-right:30px; margin-bottom:100px">
 
-Hey 👋 I'm Lisa, an engineer at [incident.io](https://incident.io).
+Hey 👋 I'm Lisa, a product engineer at [incident.io](https://incident.io).
 
 I started out as a consultant working at Accenture, before accidentally becoming a developer.
 I cut my teeth as an IC and then Tech Lead at GoCardless, and then couldn't say no to the chance to join incident.io as employee #2.

@@ -87,6 +87,15 @@ h1, h2, h3 {
         font-weight: 400;
     }
 
+    .archive {
+        a {
+            text-decoration: none;
+            line-height: 34px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    }
 }
 
 .post-img { 
