@@ -122,3 +122,23 @@ h1, h2, h3 {
     padding: 12px;
     font-size: 14px;
 }
+
+// make buttons look nice
+.call-to-action {
+    background-color: $secondary; 
+    border: none;
+    color: white !important;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 2px;
+    text-decoration: none !important;
+}
+
+.call-to-action:hover {
+    background-color: rgba($secondary, .8);
+
+}
+
