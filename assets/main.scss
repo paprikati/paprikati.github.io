@@ -9,6 +9,7 @@
 
 $accent: #850101;
 $secondary: #489FB5;
+$light-grey: #f7f8f9;
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -71,6 +72,15 @@ h1, h2, h3 {
 .footer-col-2 {
     width: -webkit-calc(60% - (30px / 2));
     width: calc(60% - (30px / 2));
+}
+
+// change footer color
+.site-footer {
+    background-color: $light-grey;
+}
+
+.contact-list {
+    color: #222222
 }
 
 .post-content {
