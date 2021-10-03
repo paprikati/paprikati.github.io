@@ -85,6 +85,7 @@ And our job logline might look like:
    "job_class": "Jobs::DoSomeWork",
    "job_id": "J123",
    "level":"INFO",
+   "msg":"worked job DoSomeWork",
    "organisation_id": "O123",
    "queue": "default",
    "result": "success",
